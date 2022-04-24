@@ -1,44 +1,34 @@
-from turtle import Turtle
+    import time
+from turtle import Turtle,Screen
+
 import random
 COLORS = ["red", "orange", "yellow", "green", "blue", "purple"]
 
 MOVE_INCREMENT = 10
-MOVE = 5
+MOVE = 30
+screen = Screen()
 
 
-
-class CarManager(Turtle):
+class CarManager:
     def __init__(self):
-        super().__init__()
-        self.lvl1()
+
+        self.allcars =[]
+
     def lvl1(self):
-        self.shape("square")
 
+        new = Turtle("square")
         colours = random.choice(COLORS)
-        self.color("blue")
-        self.shapesize(stretch_wid=1)
-        self.penup()
-        rand_y = random.randint(-220,220)
-        self.goto(300,rand_y)
+        new.color(colours)
 
-        on = True
-        while on:
-           self.back(MOVE)
+ #       new.shapesize(stretch_len=2)
+        new.penup()
+        randy = random.randint(-220,220)
+        new.goto(-300,randy)
+        self.allcars.append(new)
+    def move(self):
 
-    def lvl2(self):
-        self.reset()
-        self.shape("square")
-
-        colours = random.choice(COLORS)
-        self.color("red")
-        self.shapesize(stretch_wid=1)
-        self.penup()
-        rand_y = random.randint(-220, 220)
-        self.goto(300, rand_y)
-
-        on = True
-        while on:
-            self.back(MOVE_INCREMENT)
+        for _ in self.allcars:
+           _.forward(MOVE)
 
 
 
