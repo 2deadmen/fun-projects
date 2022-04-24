@@ -1,4 +1,4 @@
-    import time
+import time
 from turtle import Turtle,Screen
 
 import random
