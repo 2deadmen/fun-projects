@@ -1,3 +1,5 @@
+
+import json
 from tkinter import *
 from tkinter import messagebox
 import random
@@ -37,15 +39,41 @@ def write_to_file():
     webname =entry1.get()
     password = entry3.get()
     email = entry2.get()
-    if len(email)==0 or len(webname)==0 or len(password)==0:
-        messagebox.showerror(title="error",message="fields cannot be empty")
-    else:
-        is_ok=messagebox.askokcancel(title="save",message="is it  ok to save ")
-        print(is_ok)
-        if is_ok:
-          with open("data.txt","a") as file:
-             file.write(f"\nweb:{webname}|password:{password}|email:{email}\n")
+    data_new = {webname:
+        {
+            "email":email,
+            "password":password
 
+    }}
+    if len(webname)==0 or len(password)==0:
+        messagebox.showwarning(title="warning",message="fields cannot be empty")
+
+    else :
+        try:
+            with open("data.json","r")as file:
+                data =json.load(file)
+                data.update(data_new)
+            with open("data.json", "w") as file:
+                json.dump(data, file,indent=4)
+        except :
+            with open("data.json","w") as file:
+
+                json.dump(data_new,file,indent=4)
+    entry1.delete(0, END)
+    entry3.delete(0, END)
+def search():
+    webname = entry1.get()
+    with open("data.json","r") as file:
+        search_data = json.load(file)
+        try:
+            available = search_data[f"{webname}"]
+            detail_mail = available["email"]
+            detail_pass = available["password"]
+            messagebox.showinfo(title=f"{webname}",message=f"email:{detail_mail}\npassword:{detail_pass}")
+        except:
+            messagebox.showwarning(title="not found", message="sorry... file not found")
+
+    entry1.delete(0,END)
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("password manager")
@@ -61,9 +89,13 @@ label1 = Label()
 label1.config(text="website")
 label1.grid(column=0,row=1)
 
-entry1= Entry(width=35)
-entry1.grid(column=1,row=1,columnspan=2)
+entry1= Entry()
+entry1.grid(column=1,row=1,columnspan=1)
 entry1.focus()
+
+button = Button(text="search",command=search)
+button.grid(column=2,row=1)
+
 
 label2 = Label()
 label2.config(text="emial/username")
