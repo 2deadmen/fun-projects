@@ -3,7 +3,7 @@ import requests
 from datetime import datetime
 import time
 my_email="kartikhegde.2002@gmail.com"
-password ="7338210933"
+password =" your password"
 MY_LAT =14.776682 # Your latitude
 MY_LONG = 74.738446 # Your longitude
 while True:
