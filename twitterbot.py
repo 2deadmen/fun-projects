@@ -2,6 +2,8 @@ from speedtestbot import Speed
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
+PHONE ="your phone number"
+PASSWORD ="your twitter password"
 
 class Tweet:
     def __init__(self):
@@ -25,12 +27,12 @@ class Tweet:
         # driver.switch_to.window(login)
         time.sleep(3)
         phone = driver.find_element(By.XPATH,value='//*[@id="layers"]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div/div/div/div[5]/label/div/div[2]/div/input')
-        phone.send_keys("8904377382")
+        phone.send_keys(PHONE)
         next = driver.find_element(By.XPATH,value='//*[@id="layers"]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div/div/div/div[6]')
         next.click()
         time.sleep(3)
         paasword = driver.find_element(By.XPATH,value='//*[@id="layers"]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div/div[2]/div/label/div/div[2]/div[1]/input')
-        paasword.send_keys("7338210933")
+        paasword.send_keys(PASSWORD)
         submit= driver.find_element(By.XPATH,value='//*[@id="layers"]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[2]/div/div[1]/div/div')
         submit.click()
         time.sleep(3)
