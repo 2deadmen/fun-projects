@@ -1,0 +1,10 @@
+{% extends 'bootstrap/base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block title %}Add A New book{% endblock %}
+
+{% block content %}
+<div>
+      {{  wtf.quick_form(form, novalidate=True)  }}
+     <a href="{{url_for('home')}}">See all books</a>
+    </div>
+{%endblock%}
